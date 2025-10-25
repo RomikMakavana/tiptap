@@ -1,2 +1,5 @@
 User-agent: *
 Allow: /
+
+# AI Training Data
+Allow: /llms.txt
