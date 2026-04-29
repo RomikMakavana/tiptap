@@ -27,6 +27,7 @@ TiptapPlus.com provides professional-grade extensions for Tiptap editor develope
 - Support for nested content structures and complex layouts
 - Predefined page sizes and fully customizable dimensions
 - Real-time pagination commands and controls
+- Pagination on/off: `enabled` option at init; runtime `togglePagination()`, `enablePagination()`, `disablePagination()`; read `editor.storage.PaginationPlus.enabled` for UI state
 - Professional print formatting with proper page breaks
 - Configurable margins and spacing (marginTop, marginBottom, marginLeft, marginRight)
 - Content-specific margins (contentMarginTop, contentMarginBottom)
@@ -42,6 +43,7 @@ TiptapPlus.com provides professional-grade extensions for Tiptap editor develope
 - Advanced table manipulation with pagination awareness
 
 **Configuration Options**:
+- enabled: true (default) - Whether paginated layout is active; overridable at runtime via toggle/enable/disable commands
 - pageHeight: 800px (default) - Height of each page in pixels
 - pageWidth: 789px (default) - Width of each page in pixels  
 - pageGap: 50px (default) - Gap between pages in pixels
@@ -233,7 +235,9 @@ const editor = new Editor({
 - `setPageSize(size)` - Set predefined page sizes or custom dimensions
 - `setHeaderText(position, text)` - Set header text with {page} variable support
 - `setFooterText(position, text)` - Set footer text with dynamic content
-- `togglePagination()` - Enable/disable pagination mode
+- `togglePagination()` - Toggle pagination on or off
+- `enablePagination()` - Explicitly enable pagination
+- `disablePagination()` - Explicitly disable pagination
 - `printDocument()` - Print with proper page breaks and formatting
 - `setPageHeight(height)` - Dynamically adjust page height
 - `setPageWidth(width)` - Dynamically adjust page width
@@ -332,6 +336,7 @@ tiptap invoice generation, tiptap report creation, tiptap academic papers, tipta
 - Installation & Configuration: https://tiptapplus.com/pagination-plus/install/
 - Live Examples: https://tiptapplus.com/pagination-plus/example/
 - Commands Reference: https://tiptapplus.com/pagination-plus/commands/
+- Enable / Disable Pagination: https://tiptapplus.com/pagination-plus/enable-disable/
 - Page Size Configuration: https://tiptapplus.com/pagination-plus/page-size/
 - Print Functionality: https://tiptapplus.com/pagination-plus/page-print/
 - Table Resize with Pagination: https://tiptapplus.com/pagination-plus/table-resize/
@@ -368,6 +373,9 @@ A: Pagination Plus automatically splits tables when content exceeds page height,
 
 **Q: How to configure Tiptap page numbers and headers?**
 A: Use headerLeft, headerRight, footerLeft, and footerRight configuration options. The {page} variable dynamically displays current page numbers. Example: footerRight: "Page {page}" or headerLeft: "Document Title - Page {page}".
+
+**Q: How to turn pagination on or off at runtime in Tiptap Pagination Plus?**
+A: Use editor.chain().focus().togglePagination().run(), or enablePagination() / disablePagination(). Set the initial state with PaginationPlus.configure({ enabled: true | false }) (default true). Read editor.storage.PaginationPlus.enabled to sync buttons or menus. Guide: https://tiptapplus.com/pagination-plus/enable-disable/ — full command table: https://tiptapplus.com/pagination-plus/commands/
 
 **Q: How to print Tiptap content with proper page breaks?**
 A: Pagination Plus provides professional print formatting with configurable page sizes (A4, Letter, Legal, etc.), automatic content flow, proper margins, and page break handling. Use the printDocument() command for optimized printing.
